@@ -15,7 +15,7 @@ jobs:
       - name: Check if Clang 11 is on board
         run: which clang-11
       - name: Let's find where is llvm-config
-        run: which llvm-config
+        run: which llvm-config-11
       - name: Check our path
         run: pwd
       - name: Extracting llc's host target
