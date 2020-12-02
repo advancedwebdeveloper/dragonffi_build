@@ -25,4 +25,4 @@ jobs:
       - name: Checking the version of make, automake, autoconf, m4 and Ninja
         run: make --version && m4 --version && autoconf --version && automake --version && echo "Ninja's version is" && ninja --version
       - name: Clonning from DragonFFI master branch
-        run:  git clone https://github.com/aguinet/dragonffi && cd dragonffi && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CONFIG=llvm-config-11 -G Ninja .. && ninja -j 16 
+        run:  git clone https://github.com/aguinet/dragonffi && cd dragonffi && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CONFIG=/usr/bin/llvm-config-11 -G Ninja .. && ninja -j 16 
