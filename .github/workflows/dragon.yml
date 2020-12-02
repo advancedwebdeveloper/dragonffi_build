@@ -1,0 +1,26 @@
+name: dragonffi_experimental_build
+on:
+  create:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  
+  clang11_pkg_test: #Trying to build https://github.com/aguinet/dragonffi#dragonffi-compilation
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Clang 11, using dpkg
+        run: wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && sudo ./llvm.sh 11 && sudo  apt install llvm-11-dev libclang-11-dev llvm-11-tools
+      - name: Check if Clang 11 is on board
+        run: which clang-11
+      - name: Check our path
+        run: pwd
+      - name: Extracting llc's host target
+        run: llc-11 --version | grep CPU
+      - name: Trying to check if we could install Ninja
+        run: sudo apt install ninja-build -y
+      - name: Checking the version of make, automake, autoconf, m4 and Ninja
+        run: make --version && m4 --version && autoconf --version && automake --version && echo "Ninja's version is" && ninja --version
+      - name: Clonning from DragonFFI master branch
+        run:  git clone https://github.com/aguinet/dragonffi && cd dragonffi && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CONFIG=llvm-config -G Ninja .. && ninja -j 16 
