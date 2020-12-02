@@ -14,6 +14,8 @@ jobs:
         run: wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && sudo ./llvm.sh 11 && sudo  apt install llvm-11-dev libclang-11-dev llvm-11-tools
       - name: Check if Clang 11 is on board
         run: which clang-11
+      - name: Let's find where is llvm-config
+        run: which llvm-config
       - name: Check our path
         run: pwd
       - name: Extracting llc's host target
