@@ -27,4 +27,4 @@ jobs:
       - name: Clonning from DragonFFI master branch
         run:  git clone https://github.com/aguinet/dragonffi && cd dragonffi && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CONFIG=/usr/bin/llvm-config-11 -G Ninja .. && ninja -j 16
       - name: Let's check how to run the tests
-        run: ninja -t target all | grep test 
+        run: ninja -t targets all | grep test 
